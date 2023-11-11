@@ -77,6 +77,8 @@ namespace ScienceGram.Infrastructure
 				});
 
 			services.AddScoped<IIdentityService, IdentityService>();
+			services.AddScoped<ApplicationDbContextInitializer>();
+
 
 
 			return services;

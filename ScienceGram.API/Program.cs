@@ -1,20 +1,16 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Identity.Web;
+using ScienceGram.API.Middlewares;
+using ScienceGram.API.Services;
 using ScienceGram.Application;
+using ScienceGram.Application.Common.Interfaces;
 using ScienceGram.Infrastructure;
 using ScienceGram.Infrastructure.Persistence;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-
-// Add services to the container.
-builder.Services
-	.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-	.AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -25,6 +21,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Add services to the container.
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 // So that the URLs are lowercase
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
@@ -61,6 +58,7 @@ if (app.Environment.IsProduction())
 	});
 }
 
+app.UseCustomExceptionHandler(); // Custom exception handler middleware
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
