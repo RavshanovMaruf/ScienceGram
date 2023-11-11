@@ -5,13 +5,11 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScienceGram.API", "ScienceGram.API\ScienceGram.API.csproj", "{33009C0C-08E6-4D73-93BB-12E72DF74241}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceGram.Application", "ScienceGram.Application\ScienceGram.Application.csproj", "{59AA694F-CE97-4DB1-9326-E0446F6A7EE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScienceGram.Application", "ScienceGram.Application\ScienceGram.Application.csproj", "{59AA694F-CE97-4DB1-9326-E0446F6A7EE7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{29BE2522-A2C6-429C-9B57-5F7B0943FB28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScienceGram.Infrastructure", "ScienceGram.Infrastructure\ScienceGram.Infrastructure.csproj", "{8E107628-DCCF-4599-B7BF-F80E5BBAFED3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceGram.Infrastructure", "ScienceGram.Infrastructure\ScienceGram.Infrastructure.csproj", "{8E107628-DCCF-4599-B7BF-F80E5BBAFED3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceGram.Core", "ScienceGram.Core\ScienceGram.Core.csproj", "{9086D738-E957-4CD5-97F8-BB7605CF13AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScienceGram.Core", "ScienceGram.Core\ScienceGram.Core.csproj", "{9086D738-E957-4CD5-97F8-BB7605CF13AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,12 +36,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{33009C0C-08E6-4D73-93BB-12E72DF74241} = {29BE2522-A2C6-429C-9B57-5F7B0943FB28}
-		{59AA694F-CE97-4DB1-9326-E0446F6A7EE7} = {29BE2522-A2C6-429C-9B57-5F7B0943FB28}
-		{8E107628-DCCF-4599-B7BF-F80E5BBAFED3} = {29BE2522-A2C6-429C-9B57-5F7B0943FB28}
-		{9086D738-E957-4CD5-97F8-BB7605CF13AF} = {29BE2522-A2C6-429C-9B57-5F7B0943FB28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19D6B99B-5C03-490E-BC93-DE435E5E0290}
