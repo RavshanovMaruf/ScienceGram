@@ -1,4 +1,19 @@
-﻿using System.Text;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using ScienceGram.Application.Common.Interfaces;
+using ScienceGram.Application.Common.Interfaces.Repositories;
+using ScienceGram.Core.Entities;
+using ScienceGram.Infrastructure.Common.Options;
+using ScienceGram.Infrastructure.Identity;
+using ScienceGram.Infrastructure.Interceptors;
+using ScienceGram.Infrastructure.Persistence;
+using ScienceGram.Infrastructure.Repositories;
+using ScienceGram.Infrastructure.Services;
+using System.Text;
 
 namespace ScienceGram.Infrastructure
 {

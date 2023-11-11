@@ -5,28 +5,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ScienceGram.API.Controllers
 {
-    //[Authorize]
-    [ApiController]
-    [Route("[controller]")]
-    public class ArxivController : ControllerBase
-    {
-        private readonly IArxivService _arxiveService;
+	[ApiController]
+	[Route("api/[controller]")]
+	public class ArxivController : ControllerBase
+	{
+		private readonly IArxivService _arxivService;
 
-        public ArxivController(IArxivService arxivService)
-        {
-            _arxiveService = arxivService;
-        }
+		public ArxivController(IArxivService arxivService)
+		{
+			_arxivService = arxivService;
+		}
 
-        [HttpGet(Name = "GetArxivApi")]
-        public async Task<ArxivFeed> Index(
-            [FromQuery, Required] string searchQuery,
-            [FromQuery] int? start,
-            [FromQuery] int? maxResults)
-        {
-            return await _arxiveService.GetArxiv(
-                searchQuery,
-                start,
-                maxResults);
-        }
-    }
+		[HttpGet("arxiv-projects")]
+		public async Task<ArxivFeed> GetArxivProjects(
+			[FromQuery, Required] string searchQuery,
+			[FromQuery] int? start,
+			[FromQuery] int? maxResults
+		)
+		{
+			return await _arxivService.GetArxiv(searchQuery, start, maxResults);
+		}
+	}
 }
