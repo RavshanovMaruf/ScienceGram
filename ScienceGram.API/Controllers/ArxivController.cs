@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using ScienceGram.Application.Common.Interfaces;
+using ScienceGram.Application.Common.Models.Arxiv;
 
 namespace ScienceGram.API.Controllers
 {
@@ -9,53 +10,19 @@ namespace ScienceGram.API.Controllers
     public class ArxivController : Controller
     {
         private readonly IHttpClientFactory _clientFactory;
+        private readonly IArxivService _arxiveService;
 
-        public ArxivController(IHttpClientFactory clientFactory)
+        public ArxivController(IHttpClientFactory clientFactory,
+            IArxivService arxivService)
         {
+            _arxiveService = arxivService;
             _clientFactory = clientFactory;
         }
 
         [HttpGet(Name = "GetArxivApi")]
-        public async Task<IActionResult> Index()
+        public async Task<ArxivFeed> Index(string query)
         {
-            string apiUrl = $"https://export.arxiv.org/api/query?search_query=all:electron";
-
-            // Make the HTTP request
-            string result = await GetArxivDataFromApi(apiUrl);
-
-            // You might want to process the result further or pass it to a view
-            return Content(result, "application/json");
-        }
-
-        private async Task<string> GetArxivDataFromApi(string apiUrl)
-        {
-            try
-            {
-                using (HttpClient client = _clientFactory.CreateClient())
-                {
-                    // Make the HTTP request
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
-
-                    // Check if the request was successful (status code 200)
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // Read and return the response content as a string
-                        return await response.Content.ReadAsStringAsync();
-                    }
-                    else
-                    {
-                        // If the request was not successful, log an error
-                        Console.WriteLine($"Error: {response.StatusCode}");
-                        return null;
-                    }
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                // Log the HTTP request error
-                Console.WriteLine($"HTTP request error: {ex.Message}");
-                return null;
-            }
+            return await _arxiveService.GetArxiv(query);
         }
     }
 }
