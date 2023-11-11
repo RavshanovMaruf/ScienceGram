@@ -9,7 +9,6 @@ namespace ScienceGram.Core.Entities
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
 		public string Status { get; set; }
-		public string FundingSource { get; set; }
 		public int ProjectStatusId { get; set; }
 		public virtual ProjectStatus ProjectStatus { get; set; }
 		public int? CategoryId { get; set; }
