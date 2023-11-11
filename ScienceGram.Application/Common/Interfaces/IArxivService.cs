@@ -4,6 +4,6 @@ namespace ScienceGram.Application.Common.Interfaces
 {
     public interface IArxivService
     {
-        Task<ArxivFeed> GetArxiv(string searchQuery, string idList, int? start, int? maxResults);
+        Task<ArxivFeed> GetArxiv(string searchQuery, int? start, int? maxResults);
     }
 }

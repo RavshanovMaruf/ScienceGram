@@ -18,14 +18,13 @@ namespace ScienceGram.API.Controllers
         }
 
         [HttpGet(Name = "GetArxivApi")]
-        public async Task<ArxivFeed> Index([FromQuery]string? searchQuery,
-            [FromQuery]string? idList,
-            [FromQuery]int? start,
+        public async Task<ArxivFeed> Index(
+            [FromQuery, Required] string searchQuery,
+            [FromQuery] int? start,
             [FromQuery] int? maxResults)
         {
             return await _arxiveService.GetArxiv(
                 searchQuery,
-                idList,
                 start,
                 maxResults);
         }
