@@ -27,4 +27,8 @@
     <ProjectReference Include="..\ScienceGram.Infrastructure\ScienceGram.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ClientApp\" />
+  </ItemGroup>
+
 </Project>
