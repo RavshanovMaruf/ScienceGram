@@ -12,14 +12,22 @@ namespace ScienceGram.Infrastructure.Services
         {
             _clientFactory = httpClientFactory;
         }
-        public async Task<ArxivFeed> GetArxiv(string query)
+        public async Task<ArxivFeed> GetArxiv(string searchQuery, string idList, int? start, int? maxResults)
         {
             try
             {
                 using (HttpClient client = _clientFactory.CreateClient())
                 {
                     // Make the HTTP request
-                    HttpResponseMessage response = await client.GetAsync($"https://export.arxiv.org/api/query?search_query=all:{query}");
+                    UriBuilder uriBuilder = new UriBuilder("http://export.arxiv.org/api/query");
+                    
+                    if (searchQuery is null && idList is null && start is null && maxResults is null)
+                    {
+                        uriBuilder.Query = string.Empty;
+                    }
+                    uriBuilder.Query = "searchQuery="+ searchQuery;
+                    
+                    HttpResponseMessage response = await client.GetAsync(uriBuilder.Uri);
 
                     XmlSerializer serializer = new XmlSerializer(typeof(ArxivFeed));
 
