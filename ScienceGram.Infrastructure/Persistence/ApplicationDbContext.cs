@@ -30,6 +30,11 @@ namespace ScienceGram.Infrastructure.Persistence
 		public ApplicationDbContext(DbContextOptions options)
 			: base(options) { }
 
+		public virtual DbSet<Category> Categories => Set<Category>();
+		public virtual DbSet<Collaboration> Collaborations => Set<Collaboration>();
+		public virtual DbSet<Project> Projects => Set<Project>();
+		public virtual DbSet<ProjectStatus> ProjectStatuses => Set<ProjectStatus>();
+		public virtual DbSet<ChatMessage> ChatMessages => Set<ChatMessage>();
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
