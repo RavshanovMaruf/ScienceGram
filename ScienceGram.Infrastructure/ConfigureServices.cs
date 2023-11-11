@@ -80,12 +80,13 @@ namespace ScienceGram.Infrastructure
 				});
 
 			services.AddScoped<IIdentityService, IdentityService>();
+			services.AddScoped<IArxivService, ArxivService>();
+
 			services.AddScoped<ApplicationDbContextInitializer>();
 			services.AddScoped<IProjectRepository, ProjectRepository>();
 			services.AddScoped<ICategoryRepository, CategoryRepository>();
 			services.AddScoped<IProjectStatusRepository, ProjectStatusRepository>();
 			services.AddScoped<ICollaborationRepository, CollaborationRepository>();
-			services.AddScoped<IArxivService, ArxivService>();
 
 			return services;
 		}
