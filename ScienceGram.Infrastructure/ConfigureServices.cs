@@ -1,18 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using ScienceGram.Application.Common.Interfaces;
-using ScienceGram.Application.Common.Interfaces.Repositories;
-using ScienceGram.Core.Entities;
-using ScienceGram.Infrastructure.Common.Options;
-using ScienceGram.Infrastructure.Identity;
-using ScienceGram.Infrastructure.Interceptors;
-using ScienceGram.Infrastructure.Persistence;
-using ScienceGram.Infrastructure.Repositories;
-using System.Text;
+﻿using System.Text;
 
 namespace ScienceGram.Infrastructure
 {
@@ -79,11 +65,15 @@ namespace ScienceGram.Infrastructure
 				});
 
 			services.AddScoped<IIdentityService, IdentityService>();
+			services.AddScoped<IArxivService, ArxivService>();
+
 			services.AddScoped<ApplicationDbContextInitializer>();
+
 			services.AddScoped<IProjectRepository, ProjectRepository>();
 			services.AddScoped<ICategoryRepository, CategoryRepository>();
 			services.AddScoped<IProjectStatusRepository, ProjectStatusRepository>();
 			services.AddScoped<ICollaborationRepository, CollaborationRepository>();
+
 
 			return services;
 		}
