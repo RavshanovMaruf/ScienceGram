@@ -5,15 +5,10 @@
 		public int Id { get; set; }
 		public string Title { get; set; }
 		public string Description { get; set; }
+		public string Field { get; set; }
 		public int? UserId { get; set; }
 		public UserDto User { get; set; }
-		public int? CategoryId { get; set; }
-		public CategoryDto Category { get; set; }
-		public int? ProjectStatusId { get; set; }
-		public virtual ProjectStatusDto ProjectStatus { get; set; }
-		public DateTime? StartDate { get; set; }
-		public DateTime? EndDate { get; set; }
-		public virtual ICollection<ProjectSkillDto> ProjectSkills { get; set; }
+		public virtual ICollection<ProjectSkillDto> ProjectSkillNames { get; set; }
 		public virtual ICollection<ProjectLanguageDto> ProjectLanguages { get; set; }
 	}
 }

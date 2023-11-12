@@ -17,4 +17,9 @@
     <ProjectReference Include="..\ScienceGram.Core\ScienceGram.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Projects\Queries\GetById\" />
+    <Folder Include="Features\Projects\Queries\GetAll\" />
+  </ItemGroup>
+
 </Project>
