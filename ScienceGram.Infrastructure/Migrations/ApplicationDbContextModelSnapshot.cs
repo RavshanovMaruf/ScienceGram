@@ -125,35 +125,6 @@ namespace ScienceGram.Infrastructure.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ScienceGram.Core.Entities.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ModificationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("ParentCategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentCategoryId");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("ScienceGram.Core.Entities.ChatMessage", b =>
                 {
                     b.Property<int>("Id")
@@ -193,7 +164,7 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("ChatMessages");
+                    b.ToTable("ChatMessages", (string)null);
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.Collaboration", b =>
@@ -222,7 +193,86 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Collaborations");
+                    b.ToTable("Collaborations", (string)null);
+                });
+
+            modelBuilder.Entity("ScienceGram.Core.Entities.Education", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Degree")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("EndYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FieldOfStudy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Institution")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StartYear")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Education", (string)null);
+                });
+
+            modelBuilder.Entity("ScienceGram.Core.Entities.Experience", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Experiences", (string)null);
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.Project", b =>
@@ -233,9 +283,6 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -243,24 +290,15 @@ namespace ScienceGram.Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Field")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("LeadScientistID")
+                    b.Property<int>("LeadScientistId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ModificationDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("ProjectStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -269,16 +307,41 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("LeadScientistId");
 
-                    b.HasIndex("LeadScientistID");
-
-                    b.HasIndex("ProjectStatusId");
-
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
                 });
 
-            modelBuilder.Entity("ScienceGram.Core.Entities.ProjectStatus", b =>
+            modelBuilder.Entity("ScienceGram.Core.Entities.ProjectLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectLanguages", (string)null);
+                });
+
+            modelBuilder.Entity("ScienceGram.Core.Entities.ProjectSkill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -292,14 +355,19 @@ namespace ScienceGram.Infrastructure.Migrations
                     b.Property<DateTime>("ModificationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SkillName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProjectStatuses");
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectSkills", (string)null);
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.Role", b =>
@@ -362,6 +430,9 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Fax")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -457,15 +528,6 @@ namespace ScienceGram.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ScienceGram.Core.Entities.Category", b =>
-                {
-                    b.HasOne("ScienceGram.Core.Entities.Category", "ParentCategory")
-                        .WithMany("Children")
-                        .HasForeignKey("ParentCategoryId");
-
-                    b.Navigation("ParentCategory");
-                });
-
             modelBuilder.Entity("ScienceGram.Core.Entities.ChatMessage", b =>
                 {
                     b.HasOne("ScienceGram.Core.Entities.Project", "Project")
@@ -512,51 +574,73 @@ namespace ScienceGram.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ScienceGram.Core.Entities.Project", b =>
+            modelBuilder.Entity("ScienceGram.Core.Entities.Education", b =>
                 {
-                    b.HasOne("ScienceGram.Core.Entities.Category", "Category")
-                        .WithMany("Projects")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("ScienceGram.Core.Entities.User", "LeadScientist")
-                        .WithMany("Projects")
-                        .HasForeignKey("LeadScientistID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ScienceGram.Core.Entities.ProjectStatus", "ProjectStatus")
-                        .WithMany("Projects")
-                        .HasForeignKey("ProjectStatusId")
+                    b.HasOne("ScienceGram.Core.Entities.User", "User")
+                        .WithMany("Educations")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
-
-                    b.Navigation("LeadScientist");
-
-                    b.Navigation("ProjectStatus");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ScienceGram.Core.Entities.Category", b =>
+            modelBuilder.Entity("ScienceGram.Core.Entities.Experience", b =>
                 {
-                    b.Navigation("Children");
+                    b.HasOne("ScienceGram.Core.Entities.User", "User")
+                        .WithMany("Experiences")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Projects");
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ScienceGram.Core.Entities.Project", b =>
+                {
+                    b.HasOne("ScienceGram.Core.Entities.User", "LeadScientist")
+                        .WithMany("Projects")
+                        .HasForeignKey("LeadScientistId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("LeadScientist");
+                });
+
+            modelBuilder.Entity("ScienceGram.Core.Entities.ProjectLanguage", b =>
+                {
+                    b.HasOne("ScienceGram.Core.Entities.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("ScienceGram.Core.Entities.ProjectSkill", b =>
+                {
+                    b.HasOne("ScienceGram.Core.Entities.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.Project", b =>
                 {
                     b.Navigation("Collaborations");
-                });
-
-            modelBuilder.Entity("ScienceGram.Core.Entities.ProjectStatus", b =>
-                {
-                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.User", b =>
                 {
                     b.Navigation("Collaborations");
+
+                    b.Navigation("Educations");
+
+                    b.Navigation("Experiences");
 
                     b.Navigation("Projects");
 

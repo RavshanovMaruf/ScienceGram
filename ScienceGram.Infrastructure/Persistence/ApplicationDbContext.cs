@@ -14,10 +14,10 @@ namespace ScienceGram.Infrastructure.Persistence
 		private readonly IMediator? _mediator;
 		private readonly AuditableEntitySaveChangesInterceptor? _auditableEntitiesInterceptor;
 
-		public ApplicationDbContext() { }
+		//public ApplicationDbContext() { }
 
 		public ApplicationDbContext(
-			DbContextOptions options,
+			DbContextOptions<ApplicationDbContext> options,
 			AuditableEntitySaveChangesInterceptor auditableEntitiesInterceptor,
 			IMediator mediator
 		)
@@ -27,14 +27,15 @@ namespace ScienceGram.Infrastructure.Persistence
 			_mediator = mediator;
 		}
 
-		public ApplicationDbContext(DbContextOptions options)
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 			: base(options) { }
 
-		public virtual DbSet<Category> Categories => Set<Category>();
 		public virtual DbSet<Collaboration> Collaborations => Set<Collaboration>();
 		public virtual DbSet<Project> Projects => Set<Project>();
-		public virtual DbSet<ProjectStatus> ProjectStatuses => Set<ProjectStatus>();
 		public virtual DbSet<ChatMessage> ChatMessages => Set<ChatMessage>();
+		public virtual DbSet<ProjectSkill> ProjectSkills => Set<ProjectSkill>();
+		public virtual DbSet<ProjectLanguage> ProjectLanguages => Set<ProjectLanguage>();
+		public virtual DbSet<Experience> Experiences => Set<Experience>();
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{

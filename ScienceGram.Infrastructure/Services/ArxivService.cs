@@ -12,6 +12,30 @@ namespace ScienceGram.Infrastructure.Services
         {
             _clientFactory = httpClientFactory;
         }
+
+        public async Task<ArxivFeed> GetAllArxivProjects()
+        {
+            try
+            {
+                using (HttpClient client = _clientFactory.CreateClient())
+                { 
+                    var mathProjects = await GetArxivProjects("http://export.arxiv.org/api/query?search_query=all:math");
+                    var spaceProjects = await GetArxivProjects("http://export.arxiv.org/api/query?search_query=all:space");
+                    var chemistryProjects = await GetArxivProjects("http://export.arxiv.org/api/query?search_query=all:chemistry");
+                    
+                    mathProjects.Entries.AddRange(spaceProjects.Entries);
+                    mathProjects.Entries.AddRange(chemistryProjects.Entries);
+
+                    return mathProjects;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"HTTP request error: {ex.Message}");
+                return null;
+            }
+        }
+
         public async Task<ArxivFeed> GetArxiv(string searchQuery, int? start, int? maxResults)
         {
             try
@@ -19,7 +43,7 @@ namespace ScienceGram.Infrastructure.Services
                 using (HttpClient client = _clientFactory.CreateClient())
                 {
                     UriBuilder uriBuilder = new UriBuilder("http://export.arxiv.org/api/query");
-                    
+
                     if (searchQuery != null)
                     {
                         uriBuilder.Query = $"search_query=all:{searchQuery}";
@@ -55,6 +79,21 @@ namespace ScienceGram.Infrastructure.Services
             {
                 Console.WriteLine($"HTTP request error: {ex.Message}");
                 return null;
+            }
+        }
+        public async Task<ArxivFeed> GetArxivProjects(string apiUrl)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                // Make the request to the ArXiv API
+                var response = await httpClient.GetStringAsync(apiUrl);
+
+                // Deserialize the XML response into ArxivFeed object
+                var serializer = new XmlSerializer(typeof(ArxivFeed));
+                using (var reader = new StringReader(response))
+                {
+                    return (ArxivFeed)serializer.Deserialize(reader);
+                }
             }
         }
     }
