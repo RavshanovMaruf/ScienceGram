@@ -10,7 +10,10 @@ namespace ScienceGram.Core.Entities
 		public string? Address { get; set; }
 		public string? City { get; set; }
 		public string? Country { get; set; }
+		public string? Fax { get; set; }
 		public DateTime RegistrationDate { get; set; }
+		public ICollection<Experience> Experiences { get; set; }
+		public ICollection<Education> Educations { get; set; }
 		public virtual ICollection<Project> Projects { get; set; }
 		public virtual ICollection<Collaboration> Collaborations { get; set; }
 		public virtual ICollection<ChatMessage> SenderChatMessages { get; set; }

@@ -35,6 +35,10 @@ namespace ScienceGram.Infrastructure.Persistence
 		public virtual DbSet<Project> Projects => Set<Project>();
 		public virtual DbSet<ProjectStatus> ProjectStatuses => Set<ProjectStatus>();
 		public virtual DbSet<ChatMessage> ChatMessages => Set<ChatMessage>();
+		public virtual DbSet<ProjectSkill> ProjectSkills => Set<ProjectSkill>();
+		public virtual DbSet<ProjectLanguage> ProjectLanguages => Set<ProjectLanguage>();
+		public virtual DbSet<Experience> Experiences => Set<Experience>();
+		public virtual DbSet<Language> Languages => Set<Language>();
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
