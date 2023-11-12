@@ -25,5 +25,11 @@ namespace ScienceGram.API.Controllers
 		{
 			return await _arxivService.GetArxiv(searchQuery, start, maxResults);
 		}
+
+		[HttpGet("all-arxiv-projects")]
+		public async Task<ArxivFeed> GetAllArxivProjects()
+		{
+			return await _arxivService.GetAllArxivProjects();
+		}
 	}
 }

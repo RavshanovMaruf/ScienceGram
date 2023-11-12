@@ -12,6 +12,38 @@ namespace ScienceGram.Infrastructure.Services
         {
             _clientFactory = httpClientFactory;
         }
+
+        public async Task<ArxivFeed> GetAllArxivProjects()
+        {
+            try
+            {
+                using (HttpClient client = _clientFactory.CreateClient())
+                {
+                    HttpResponseMessage response2 = await client.GetAsync("http://export.arxiv.org/api/query?search_query=all:space");
+
+                    XmlSerializer serializer = new XmlSerializer(typeof(ArxivFeed));
+
+                    using (StringReader reader = new StringReader(await response2.Content.ReadAsStringAsync()))
+                    {
+                        try
+                        {
+                            return (ArxivFeed)serializer.Deserialize(reader);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error deserializing XML: {ex.Message}");
+                            return default(ArxivFeed);
+                        }
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"HTTP request error: {ex.Message}");
+                return null;
+            }
+        }
+
         public async Task<ArxivFeed> GetArxiv(string searchQuery, int? start, int? maxResults)
         {
             try
