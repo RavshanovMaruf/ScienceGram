@@ -1,3 +1,12 @@
+using Chat.Web.Data;
+using Chat.Web.Helpers;
+using Chat.Web.Hubs;
+using Chat.Web.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using ScienceGram.API.Middlewares;
 using ScienceGram.API.Services;
 using ScienceGram.Application;
@@ -14,6 +23,16 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddHttpClient();
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddTransient<IFileValidator, FileValidator>();
+builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
+
+
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ChatDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ChatConnection")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -65,6 +84,15 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
 app.UseAuthorization();
+app.UseStaticFiles();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapControllers();
+    endpoints.MapHub<ChatHub>("/chatHub");
+});
+
 app.MapControllers();
 
 app.Run();

@@ -14,10 +14,10 @@ namespace ScienceGram.Infrastructure.Persistence
 		private readonly IMediator? _mediator;
 		private readonly AuditableEntitySaveChangesInterceptor? _auditableEntitiesInterceptor;
 
-		public ApplicationDbContext() { }
+		//public ApplicationDbContext() { }
 
 		public ApplicationDbContext(
-			DbContextOptions options,
+			DbContextOptions<ApplicationDbContext> options,
 			AuditableEntitySaveChangesInterceptor auditableEntitiesInterceptor,
 			IMediator mediator
 		)
@@ -27,7 +27,7 @@ namespace ScienceGram.Infrastructure.Persistence
 			_mediator = mediator;
 		}
 
-		public ApplicationDbContext(DbContextOptions options)
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 			: base(options) { }
 
 		public virtual DbSet<Category> Categories => Set<Category>();
