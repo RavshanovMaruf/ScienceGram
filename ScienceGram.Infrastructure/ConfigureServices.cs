@@ -83,12 +83,10 @@ namespace ScienceGram.Infrastructure
 			services.AddScoped<IArxivService, ArxivService>();
 
 			services.AddScoped<ApplicationDbContextInitializer>();
-
 			services.AddScoped<IProjectRepository, ProjectRepository>();
 			services.AddScoped<ICategoryRepository, CategoryRepository>();
 			services.AddScoped<IProjectStatusRepository, ProjectStatusRepository>();
 			services.AddScoped<ICollaborationRepository, CollaborationRepository>();
-
 
 			return services;
 		}

@@ -48,13 +48,25 @@
 }
 
 .navbar_profile_wrapper {
+	max-width: 200px;
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	cursor: pointer;
 }
 
 .profile_link {
 	font-size: 22px;
 	font-weight: 500;
 	color: #1a1a1a;
+}
+
+.menu_item {
+	font-size: 18px;
+	color: #000;
+}
+
+.horizontal_line {
+	height: 1px;
+	background-color: lightslategray;
 }

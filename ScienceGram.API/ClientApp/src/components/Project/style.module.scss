@@ -1,8 +1,54 @@
 .project_wrapper {
+	padding: 20px;
 	width: 400px;
+
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	gap: 15px;
 
-	border: 1px solid red;
+	transition: 0.3s;
+	border-radius: 16px;
+	border: 1px solid lightslategray;
+	cursor: pointer;
+
+	&:hover {
+		border-color: transparent;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	}
+}
+
+.project_title {
+	font-size: 24px;
+	color: #000eac;
+}
+
+.project_summary {
+	height: 200px;
+	overflow: hidden;
+	font-weight: 500;
+	color: rgb(78, 79, 80);
+}
+
+.authors_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.subtitle {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.project_author {
+	font-size: 14px;
+	font-weight: 600;
+	color: #000eac;
+}
+
+.project_journal {
+	font-size: 14px;
+	font-weight: 600;
+	color: rgb(78, 79, 80);
 }

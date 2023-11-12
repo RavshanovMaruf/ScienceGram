@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import { Button, TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { signUp } from "../../services";
 
 const SignUp = () => {
+	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [firstName, setFirstName] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -30,6 +30,13 @@ const SignUp = () => {
 		}
 	};
 
+	const handleSignUp = (e) => {
+		e.preventDefault();
+		signUp({ email, password, confirmPassword }).then(() =>
+			navigate("/log-in")
+		);
+	};
+
 	return (
 		<div className={styles.login_wrapper}>
 			<div className={styles.login_block}>
@@ -38,22 +45,6 @@ const SignUp = () => {
 				</div>
 
 				<form className={styles.login_body_wrapper}>
-					<TextField
-						type="text"
-						value={firstName}
-						label="First Name"
-						variant="outlined"
-						onChange={(e) => setFirstName(e.target.value)}
-					/>
-
-					<TextField
-						type="text"
-						value={lastName}
-						label="Last Name"
-						variant="outlined"
-						onChange={(e) => setLastName(e.target.value)}
-					/>
-
 					<TextField
 						type="email"
 						value={email}
@@ -109,6 +100,13 @@ const SignUp = () => {
 					<Button
 						type="submit"
 						variant="contained"
+						disabled={
+							!email.replaceAll(" ", "") ||
+							!password.replaceAll(" ", "") ||
+							!confirmPassword.replaceAll(" ", "")
+						}
+						onClick={handleSignUp}
+						onSubmit={handleSignUp}
 						style={{ borderRadius: "8px" }}
 					>
 						Sign Up

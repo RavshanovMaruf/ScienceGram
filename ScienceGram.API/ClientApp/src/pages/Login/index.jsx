@@ -1,12 +1,14 @@
 import { Button, TextField } from "@mui/material";
 import styles from "./style.module.scss";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { signIn } from "../../services";
 
 const Login = () => {
+	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
@@ -24,6 +26,14 @@ const Login = () => {
 		} else {
 			setEmail(text);
 		}
+	};
+
+	const handleLogin = (e) => {
+		e.preventDefault();
+		signIn({ email, password }).then((res) => {
+			localStorage.setItem("accessToken", res.data.result.accessToken);
+			navigate("/app/main");
+		});
 	};
 
 	return (
@@ -68,9 +78,14 @@ const Login = () => {
 					</div>
 
 					<Button
-						style={{ borderRadius: "8px" }}
-						variant="contained"
 						type="submit"
+						variant="contained"
+						onClick={handleLogin}
+						onSubmit={handleLogin}
+						style={{ borderRadius: "8px" }}
+						disabled={
+							!email.replaceAll(" ", "") || !password.replaceAll(" ", "")
+						}
 					>
 						Log In
 					</Button>

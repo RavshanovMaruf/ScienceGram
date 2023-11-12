@@ -8,6 +8,14 @@
 	gap: 20px;
 }
 
+.profile_header_wrapper {
+	padding-bottom: 10px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .profile_heading {
 	font-size: 46px;
 	font-weight: 600;
@@ -84,4 +92,33 @@
 
 	border-radius: 7px;
 	cursor: pointer;
+}
+
+.save_button_wrapper {
+	padding-top: 20px;
+	margin-top: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	border-top: 1px solid lightslategray;
+}
+
+.info_wrapper {
+	width: 100%;
+	display: flex;
+}
+
+.info_text {
+	width: 50%;
+	font-size: 18px;
+	color: #222c7c;
+	font-weight: 600;
+	text-align: left;
+}
+
+.education_wrapper {
+	margin-top: 10px;
+	padding-top: 10px;
+	width: 100%;
+	border-top: 1px solid lightslategray;
 }
