@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScienceGram.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using ScienceGram.Infrastructure.Persistence;
 namespace ScienceGram.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231112062823_fixes")]
+    partial class fixes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,7 +167,7 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("ChatMessages", (string)null);
+                    b.ToTable("ChatMessages");
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.Collaboration", b =>
@@ -193,7 +196,7 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Collaborations", (string)null);
+                    b.ToTable("Collaborations");
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.Education", b =>
@@ -238,7 +241,7 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Education", (string)null);
+                    b.ToTable("Education");
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.Experience", b =>
@@ -272,7 +275,7 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Experiences", (string)null);
+                    b.ToTable("Experiences");
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.Project", b =>
@@ -309,7 +312,7 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasIndex("LeadScientistId");
 
-                    b.ToTable("Projects", (string)null);
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.ProjectLanguage", b =>
@@ -338,7 +341,7 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("ProjectLanguages", (string)null);
+                    b.ToTable("ProjectLanguages");
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.ProjectSkill", b =>
@@ -367,7 +370,7 @@ namespace ScienceGram.Infrastructure.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("ProjectSkills", (string)null);
+                    b.ToTable("ProjectSkills");
                 });
 
             modelBuilder.Entity("ScienceGram.Core.Entities.Role", b =>
