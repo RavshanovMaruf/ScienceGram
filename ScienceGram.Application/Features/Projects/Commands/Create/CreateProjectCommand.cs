@@ -13,8 +13,8 @@ namespace ScienceGram.Application.Features.Projects.Commands.Create
 		public string Title { get; set; }
 		public string Description { get; set; }
 		public string Field { get; set; }
-		public string[] ProjectSkillNames { get; set; }
-		public string[] ProjectLanguages { get; set; }
+		public IList<string> ProjectSkillNames { get; set; }
+		public IList<string> ProjectLanguages { get; set; }
 	}
 
 	public class CreateProjectCommandHandler
