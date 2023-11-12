@@ -1,0 +1,62 @@
+.landing_wrapper {
+	padding: 20px 50px;
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 150px;
+
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.landing_text_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.landing_heading {
+	font-size: 72px;
+	color: #007adf;
+}
+
+.hub {
+	color: #1a1a1a;
+}
+
+.landing_desc {
+	font-size: 40px;
+	font-weight: 500;
+}
+
+.landing_button {
+	padding: 0 30px;
+	width: fit-content;
+	height: 50px;
+
+	font-size: 24px;
+	color: white;
+
+	border: none;
+	outline: none;
+	transition: 0.3s;
+	border-radius: 15px;
+	background-color: #007adf;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #005ca7;
+	}
+}
+
+.landing_image_wrapper {
+	width: 60%;
+	height: 100%;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}

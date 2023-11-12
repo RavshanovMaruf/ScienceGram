@@ -246,10 +246,6 @@ namespace ScienceGram.Infrastructure.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FundingSource")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("LeadScientistID")
                         .HasColumnType("int");
 

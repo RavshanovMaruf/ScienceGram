@@ -1,0 +1,43 @@
+.image_wrapper {
+	width: 100%;
+	height: 400px;
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #151622;
+}
+
+.heading {
+	font-size: 56px;
+	color: #fff;
+}
+
+.create_project_button {
+	position: absolute !important;
+	bottom: 20px;
+	right: 50px;
+}
+
+.body {
+	padding: 20px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.search_wrapper {
+	margin: 0 auto;
+	max-width: 850px;
+	width: 100%;
+}
+
+.search {
+	width: 100%;
+}
+
+.projects_wrapper {
+	border: 1px solid red;
+}

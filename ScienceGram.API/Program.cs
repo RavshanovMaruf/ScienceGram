@@ -13,7 +13,6 @@ using ScienceGram.Application;
 using ScienceGram.Application.Common.Interfaces;
 using ScienceGram.Infrastructure;
 using ScienceGram.Infrastructure.Persistence;
-using ScienceGram.Infrastructure.Services;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +53,22 @@ builder.Services
 		options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
 	);
 
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy(
+		name: "CorsPolicy",
+		builder =>
+		{
+			builder
+				.WithOrigins("http://localhost:3000")
+				.AllowAnyMethod()
+				.AllowAnyHeader()
+				.AllowCredentials();
+		}
+	);
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -79,6 +94,7 @@ if (app.Environment.IsProduction())
 	});
 }
 
+app.UseCors("CorsPolicy");
 app.UseCustomExceptionHandler(); // Custom exception handler middleware
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -94,5 +110,6 @@ app.UseEndpoints(endpoints =>
 });
 
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 
 app.Run();

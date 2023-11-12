@@ -1,0 +1,61 @@
+.login_wrapper {
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login_block {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	padding: 20px 10px;
+	border-radius: 16px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.block_header {
+	padding: 0 20px 10px;
+}
+
+.block_title {
+	font-size: 22px;
+	font-weight: 600;
+	color: #034881;
+}
+
+.login_body_wrapper {
+	padding: 10px 20px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.password_field_wrapper {
+	position: relative;
+	display: flex;
+}
+
+.eye_icon {
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.sign_up_text {
+	font-size: 14px;
+	font-weight: 500;
+	text-align: center;
+	color: #5e5e5e;
+}
+
+.link {
+	color: #1c69a8;
+	font-weight: 600;
+	text-decoration: underline;
+}
