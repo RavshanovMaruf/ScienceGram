@@ -1,9 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import styles from "./style.module.scss";
 import Project from "../../components/Project";
-import { getArxivProjects } from "../../services";
+import { getAllArxivProjects, getArxivProjects } from "../../services";
 import { useEffect, useState } from "react";
 import CreateProject from "../../components/CreateProject";
+import { Link } from "react-router-dom";
 
 const Main = () => {
 	const handleOpen = () => setOpen(true);
@@ -13,7 +14,7 @@ const Main = () => {
 	const [projects, setProjects] = useState(null);
 
 	useEffect(() => {
-		getArxivProjects("physics").then((res) => setProjects(res?.data?.entries));
+		getAllArxivProjects().then((res) => setProjects(res?.data?.entries));
 	}, []);
 
 	const handleSearch = (e) => {
@@ -65,7 +66,12 @@ const Main = () => {
 				</form>
 
 				<div className={styles.projects_wrapper}>
-					{projects && projects.map((e) => <Project data={e} key={e.id} />)}
+					{projects &&
+						projects.map((e) => (
+							<Link to="/app/project/about" key={e.id}>
+								<Project data={e} key={e.id} />
+							</Link>
+						))}
 				</div>
 			</div>
 		</div>

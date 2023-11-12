@@ -48,6 +48,21 @@ namespace Chat.Web
             services.AddRazorPages();
             services.AddControllers();
             services.AddSignalR();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    name: "CorsPolicy",
+                    builder =>
+                    {
+                        builder
+                            .WithOrigins("http://localhost:3000")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    }
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,9 +80,11 @@ namespace Chat.Web
                 app.UseHsts();
             }
 
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
             app.UseAuthentication();

@@ -1,6 +1,7 @@
 .project_wrapper {
 	padding: 20px;
 	width: 400px;
+	height: 350px;
 
 	display: flex;
 	flex-direction: column;
@@ -20,6 +21,10 @@
 
 .project_title {
 	font-size: 24px;
+	height: 30px;
+	text-wrap: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	color: #000eac;
 }
 

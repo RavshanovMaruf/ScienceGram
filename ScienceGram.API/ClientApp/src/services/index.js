@@ -47,3 +47,10 @@ export const getArxivProjects = (searchQuery) =>
 			id: "arxiv-projects",
 		})
 	);
+
+export const getAllArxivProjects = () =>
+	client.get("/arxiv/all-arxiv-projects").catch(() =>
+		toast.error("Something bad happened\nPlease try again later.", {
+			id: "all-arxiv-projects",
+		})
+	);

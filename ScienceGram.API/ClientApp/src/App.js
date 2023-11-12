@@ -5,6 +5,7 @@ import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
+import ProjectPage from "./pages/ProjectPage";
 
 const App = () => {
 	return (
@@ -16,6 +17,7 @@ const App = () => {
 				<Route path="/app" element={<Layout />}>
 					<Route path="/app/main" element={<Main />} />
 					<Route path="/app/profile" element={<Profile />} />
+					<Route path="/app/project/:nav" element={<ProjectPage />} />
 				</Route>
 			</Routes>
 		</div>
