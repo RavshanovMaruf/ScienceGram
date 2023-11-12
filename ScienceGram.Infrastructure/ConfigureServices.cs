@@ -87,6 +87,10 @@ namespace ScienceGram.Infrastructure
 			services.AddScoped<ICategoryRepository, CategoryRepository>();
 			services.AddScoped<IProjectStatusRepository, ProjectStatusRepository>();
 			services.AddScoped<ICollaborationRepository, CollaborationRepository>();
+			services.AddScoped<IEducationRepository, EducationRepository>();
+			services.AddScoped<IExperienceRepository, ExperienceRepository>();
+			services.AddScoped<IProjectLanguageRepository, ProjectLanguageRepository>();
+			services.AddScoped<IProjectSkillRepository, ProjectSkillRepository>();
 
 			return services;
 		}

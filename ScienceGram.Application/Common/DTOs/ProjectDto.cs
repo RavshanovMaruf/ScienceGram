@@ -13,5 +13,7 @@
 		public virtual ProjectStatusDto ProjectStatus { get; set; }
 		public DateTime? StartDate { get; set; }
 		public DateTime? EndDate { get; set; }
+		public virtual ICollection<ProjectSkillDto> ProjectSkills { get; set; }
+		public virtual ICollection<ProjectLanguageDto> ProjectLanguages { get; set; }
 	}
 }
